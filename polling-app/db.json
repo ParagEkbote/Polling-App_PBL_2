@@ -1,0 +1,84 @@
+{
+  "polls": [
+    {
+      "id": "d355ee7d-683f-4a4e-8dfc-b0d1dd0ce890",
+      "question": "qq",
+      "options": [
+        {
+          "id": "34e09adc-2808-4369-9295-5cef58e465f4",
+          "text": "qq",
+          "votes": 1
+        },
+        {
+          "id": "da194e14-048b-4c49-b4f4-8394812fe204",
+          "text": "sd",
+          "votes": 0
+        }
+      ]
+    },
+    {
+      "id": "e8be319c-0a1c-4e03-8332-1e53e4e25323",
+      "question": "tts",
+      "options": [
+        {
+          "id": "c6c0ed79-c434-4d76-b6a5-4d1e313369d0",
+          "text": "toi",
+          "votes": 0
+        },
+        {
+          "id": "21fe0b8d-8a6c-4e37-b7ab-bd049e0f2485",
+          "text": "the",
+          "votes": 0
+        }
+      ]
+    },
+    {
+      "id": "31445b1d-e750-4347-b285-6284a96e3613",
+      "question": "Who was adolf hitler?",
+      "options": [
+        {
+          "id": "32bb35ed-6460-4550-ba94-75b6c578d5d7",
+          "text": "toi",
+          "votes": 0
+        },
+        {
+          "id": "66fef424-6fa4-46fc-8ccf-0a4b34f34315",
+          "text": "the",
+          "votes": 0
+        }
+      ]
+    },
+    {
+      "id": "bc9c820c-77c8-4e7a-a075-3870dde7c0ec",
+      "question": "who was adolf hitler",
+      "options": [
+        {
+          "id": "86e554c1-55f0-4e0f-ae89-e3e6e3c0c63d",
+          "text": "painter ",
+          "votes": 4
+        },
+        {
+          "id": "ccc19ea8-60b8-43a8-b975-e80d28eea644",
+          "text": "podcast dude",
+          "votes": 3
+        }
+      ]
+    },
+    {
+      "id": "fd98eaaf-fb1c-4de8-ba6f-338947edf6af",
+      "question": "Who was america's 31st president?",
+      "options": [
+        {
+          "id": "f80412f3-b25d-4f73-9d5c-8adcbe679d44",
+          "text": "donald trump",
+          "votes": 2
+        },
+        {
+          "id": "70a20b72-10ba-4ae5-86c9-f9b6041c04f0",
+          "text": "joe biden",
+          "votes": 2
+        }
+      ]
+    }
+  ]
+}
