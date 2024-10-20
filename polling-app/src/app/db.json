@@ -1,0 +1,16 @@
+{
+    "polls": [
+      {
+        "id": "string",
+        "question": "string",
+        "options": [
+          {
+            "id": "string",
+            "text": "string",
+            "votes": 0
+          }
+        ]
+      }
+    ]
+  }
+  
