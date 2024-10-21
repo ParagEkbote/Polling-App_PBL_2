@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Spinner, Alert } from 'react-bootstrap';
 import PollForm from './components/PollForm';
@@ -66,11 +65,11 @@ const Home: React.FC = () => {
   };
 
   return (
-    <Container className="py-5" style={{ backgroundColor: '#f0f8ff' }}>
+    <Container className="d-flex flex-column justify-content-center align-items-center text-center min-vh-100" style={{ backgroundColor: '#f0f8ff' }}>
       <Header />
       <LoadingSpinner loading={loading} />
       <ErrorAlert error={error} />
-      <Row className="justify-content-center">
+      <Row className="justify-content-center w-100">
         <PollCreationCard onCreatePoll={handleCreatePoll} />
         <ExistingPollsCard polls={polls} loading={loading} onVote={handleVote} />
       </Row>
@@ -79,7 +78,7 @@ const Home: React.FC = () => {
 };
 
 const Header: React.FC = () => (
-  <Row className="text-center mb-5">
+  <Row className="text-center mb-5 w-100">
     <Col>
       <h1 className="display-4 font-weight-bold text-center">Polling App</h1>
       <p className="lead text-center">Create and participate in polls with ease!</p>
@@ -89,7 +88,7 @@ const Header: React.FC = () => (
 
 const LoadingSpinner: React.FC<{ loading: boolean }> = ({ loading }) => (
   loading && (
-    <Row className="text-center mb-3">
+    <Row className="text-center mb-3 w-100">
       <Col>
         <Spinner animation="border" variant="primary" />
         <p>Loading polls...</p>
@@ -100,7 +99,7 @@ const LoadingSpinner: React.FC<{ loading: boolean }> = ({ loading }) => (
 
 const ErrorAlert: React.FC<{ error: string | null }> = ({ error }) => (
   error && (
-    <Row className="text-center mb-3">
+    <Row className="text-center mb-3 w-100">
       <Col>
         <Alert variant="danger" className="alert-custom text-center">{error}</Alert>
       </Col>
@@ -109,7 +108,7 @@ const ErrorAlert: React.FC<{ error: string | null }> = ({ error }) => (
 );
 
 const PollCreationCard: React.FC<{ onCreatePoll: (question: string, options: string[]) => Promise<void> }> = ({ onCreatePoll }) => (
-  <Col md={5} className="mb-4">
+  <Col md={5} className="mb-4 d-flex justify-content-center">
     <Card className="shadow-lg text-center">
       <Card.Body>
         <Card.Title className="text-center mb-4 font-weight-bold">Create a New Poll</Card.Title>
@@ -120,7 +119,7 @@ const PollCreationCard: React.FC<{ onCreatePoll: (question: string, options: str
 );
 
 const ExistingPollsCard: React.FC<{ polls: Poll[], loading: boolean, onVote: (pollId: string, optionId: string) => Promise<void> }> = ({ polls, loading, onVote }) => (
-  <Col md={5} className="mb-4">
+  <Col md={5} className="mb-4 d-flex justify-content-center">
     <Card className="shadow-lg text-center">
       <Card.Body>
         <Card.Title className="text-center mb-4 font-weight-bold">Active Polls</Card.Title>
