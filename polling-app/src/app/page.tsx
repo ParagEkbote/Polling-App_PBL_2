@@ -86,7 +86,7 @@ const Home: React.FC = () => {
 const Header: React.FC = () => (
   <Row className="text-center mb-5 w-100">
     <Col>
-      <h1 className="display-4 font-weight-bold text-center">Polling App</h1>
+      <h1 className="display-4 font-weight-bold text-center"><p style={{ marginBottom: '15px' }}>Polling App</p></h1>
     </Col>
   </Row>
 );
@@ -116,7 +116,7 @@ const PollCreationCard: React.FC<{ onCreatePoll: (question: string, options: str
   <Col md={5} className="mb-4 d-flex justify-content-center">
     <Card className="shadow-lg text-center">
       <Card.Body>
-        <Card.Title className="text-center mb-4 font-weight-bold">Create a New Poll</Card.Title>
+        <Card.Title className="text-center mb-4 font-weight-bold"><p style={{ marginBottom: '15px' }}>Create a New Poll</p></Card.Title>
         <PollForm onSubmit={onCreatePoll} />
       </Card.Body>
     </Card>
@@ -127,7 +127,7 @@ const ExistingPollsCard: React.FC<{ polls: Poll[], loading: boolean, onVote: (po
   <Col md={5} className="mb-4 d-flex justify-content-center">
     <Card className="shadow-lg text-center">
       <Card.Body>
-        <Card.Title className="text-center mb-4 font-weight-bold">Active Polls</Card.Title>
+        <Card.Title className="text-center mb-4 font-weight-bold"><p style={{ marginBottom: '15px' }}>Active Polls</p></Card.Title>
         {polls.length === 0 && !loading ? (
           <p className="text-center">No polls available. Be the first to create one!</p>
         ) : (
