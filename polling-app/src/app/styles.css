@@ -1,5 +1,5 @@
 body {
-  background-color: #d4ece942;
+  background-color: #b9d4f0;
   font-family: 'Arial', sans-serif;
   display: flex;
   justify-content: center;
@@ -23,11 +23,11 @@ body {
 }
 
 h1.display-4 {
-  color: #343a40;
+  color: #110101;
 }
 
 h3 {
-  color: #007bff;
+  color: #000000;
 }
 
 .btn {
@@ -36,5 +36,9 @@ h3 {
 }
 
 .btn:hover {
-  background-color: #eaeff5;
+  background-color: #000000;
+}
+
+.container {
+  max-width: 1400px; /* Expand the container size */
 }

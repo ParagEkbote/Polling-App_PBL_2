@@ -65,7 +65,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <Container className="d-flex flex-column justify-content-center align-items-center text-center min-vh-100" style={{ backgroundColor: '#f0f8ff' }}>
+    <Container className="d-flex flex-column justify-content-center align-items-center text-center min-vh-100" style={{ backgroundColor: '#f0f8ff', maxWidth: '1400px' }}>
       <Header />
       <LoadingSpinner loading={loading} />
       <ErrorAlert error={error} />
