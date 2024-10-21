@@ -65,7 +65,13 @@ const Home: React.FC = () => {
   };
 
   return (
-    <Container className="d-flex flex-column justify-content-center align-items-center text-center min-vh-100" style={{ backgroundColor: '#f0f8ff', maxWidth: '1400px' }}>
+    <Container className="d-flex flex-column justify-content-center align-items-center text-center min-vh-100"  style={{
+      backgroundColor: '#f0f8ff',
+      maxWidth: '1400px',
+      border: '2px solid black', // Adding the border
+      borderRadius: '8px', // Adding rounded corners
+      padding: '20px' // Optional: Add some padding inside the container
+    }}>
       <Header />
       <LoadingSpinner loading={loading} />
       <ErrorAlert error={error} />
@@ -81,7 +87,6 @@ const Header: React.FC = () => (
   <Row className="text-center mb-5 w-100">
     <Col>
       <h1 className="display-4 font-weight-bold text-center">Polling App</h1>
-      <p className="lead text-center">Create and participate in polls with ease!</p>
     </Col>
   </Row>
 );
