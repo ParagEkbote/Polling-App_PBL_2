@@ -1,31 +1,32 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button, Spinner, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Card, Spinner, Alert } from 'react-bootstrap';
 import PollForm from './components/PollForm';
 import PollList from './components/PollList';
-import { Poll } from './types'; // Import Poll from types.ts
-import './styles.css'; // Import your custom CSS file for additional styling
+import { Poll } from './types';
+import './styles.css';
 
-export default function Home() {
+const Home: React.FC = () => {
   const [polls, setPolls] = useState<Poll[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchPolls();
+    loadPolls();
   }, []);
 
-  const fetchPolls = async () => {
+  const loadPolls = async () => {
     try {
+      setLoading(true);
       const response = await fetch('/api/polls');
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      const data = await response.json();
-      setPolls(data);
+      const fetchedPolls = await response.json();
+      setPolls(fetchedPolls);
       setError(null);
-    } catch (error: any) {
+    } catch (err) {
       setError("Failed to fetch polls. Please try again later.");
     } finally {
       setLoading(false);
@@ -33,78 +34,114 @@ export default function Home() {
   };
 
   const handleCreatePoll = async (question: string, options: string[]) => {
-    setLoading(true);
-    await fetch('/api/polls', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ question, options }),
-    });
-    fetchPolls();
+    try {
+      setLoading(true);
+      const response = await fetch('/api/polls', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ question, options }),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      await loadPolls();
+    } catch (err) {
+      setError("Failed to create poll. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleVote = async (pollId: string, optionId: string) => {
-    setLoading(true);
-    await fetch('/api/polls', {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ pollId, optionId }),
-    });
-    fetchPolls();
+    try {
+      setLoading(true);
+      const response = await fetch('/api/polls', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ pollId, optionId }),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      await loadPolls();
+    } catch (err) {
+      setError("Failed to register vote. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <Container className="py-5">
-      <Row className="text-center mb-5">
-        <Col>
-          <h1 className="display-4 font-weight-bold">Polling App</h1>
-          <p className="lead">Create and vote on polls easily!</p>
-        </Col>
-      </Row>
-
-      {loading && (
-        <Row className="text-center mb-3">
-          <Col>
-            <Spinner animation="border" variant="primary" />
-            <p>Loading polls...</p>
-          </Col>
-        </Row>
-      )}
-
-      {error && (
-        <Row className="text-center mb-3">
-          <Col>
-            <Alert variant="danger" className="alert-custom">{error}</Alert>
-          </Col>
-        </Row>
-      )}
-
+      <Header />
+      <LoadingSpinner loading={loading} />
+      <ErrorAlert error={error} />
       <Row className="justify-content-center">
-        <Col md={5} className="mb-4">
-          <Card className="shadow-lg">
-            <Card.Body>
-              <Card.Title className="text-center mb-4 font-weight-bold">Create a New Poll</Card.Title>
-              <PollForm onSubmit={handleCreatePoll} />
-            </Card.Body>
-          </Card>
-        </Col>
-
-        <Col md={5} className="mb-4">
-          <Card className="shadow-lg">
-            <Card.Body>
-              <Card.Title className="text-center mb-4 font-weight-bold">Existing Polls</Card.Title>
-              {polls.length === 0 && !loading ? (
-                <p className="text-center">No polls available yet. Create one!</p>
-              ) : (
-                <PollList polls={polls} onVote={handleVote} />
-              )}
-            </Card.Body>
-          </Card>
-        </Col>
+        <PollCreationCard onCreatePoll={handleCreatePoll} />
+        <ExistingPollsCard polls={polls} loading={loading} onVote={handleVote} />
       </Row>
     </Container>
   );
-}
+};
+
+const Header: React.FC = () => (
+  <Row className="text-center mb-5">
+    <Col>
+      <h1 className="display-4 font-weight-bold">Polling App</h1>
+      <p className="lead">Create and participate in polls with ease!</p>
+    </Col>
+  </Row>
+);
+
+const LoadingSpinner: React.FC<{ loading: boolean }> = ({ loading }) => (
+  loading && (
+    <Row className="text-center mb-3">
+      <Col>
+        <Spinner animation="border" variant="primary" />
+        <p>Loading polls...</p>
+      </Col>
+    </Row>
+  )
+);
+
+const ErrorAlert: React.FC<{ error: string | null }> = ({ error }) => (
+  error && (
+    <Row className="text-center mb-3">
+      <Col>
+        <Alert variant="danger" className="alert-custom">{error}</Alert>
+      </Col>
+    </Row>
+  )
+);
+
+const PollCreationCard: React.FC<{ onCreatePoll: (question: string, options: string[]) => Promise<void> }> = ({ onCreatePoll }) => (
+  <Col md={5} className="mb-4">
+    <Card className="shadow-lg">
+      <Card.Body>
+        <Card.Title className="text-center mb-4 font-weight-bold">Create a New Poll</Card.Title>
+        <PollForm onSubmit={onCreatePoll} />
+      </Card.Body>
+    </Card>
+  </Col>
+);
+
+const ExistingPollsCard: React.FC<{ polls: Poll[], loading: boolean, onVote: (pollId: string, optionId: string) => Promise<void> }> = ({ polls, loading, onVote }) => (
+  <Col md={5} className="mb-4">
+    <Card className="shadow-lg">
+      <Card.Body>
+        <Card.Title className="text-center mb-4 font-weight-bold">Active Polls</Card.Title>
+        {polls.length === 0 && !loading ? (
+          <p className="text-center">No polls available. Be the first to create one!</p>
+        ) : (
+          <PollList polls={polls} onVote={onVote} />
+        )}
+      </Card.Body>
+    </Card>
+  </Col>
+);
+
+export default Home;
