@@ -20,9 +20,7 @@ const Home: React.FC = () => {
     try {
       setLoading(true);
       const response = await fetch('/api/polls');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       const fetchedPolls = await response.json();
       setPolls(fetchedPolls);
       setError(null);
@@ -38,14 +36,10 @@ const Home: React.FC = () => {
       setLoading(true);
       const response = await fetch('/api/polls', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ question, options }),
       });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       await loadPolls();
     } catch (err) {
       setError("Failed to create poll. Please try again.");
@@ -59,14 +53,10 @@ const Home: React.FC = () => {
       setLoading(true);
       const response = await fetch('/api/polls', {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ pollId, optionId }),
       });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       await loadPolls();
     } catch (err) {
       setError("Failed to register vote. Please try again.");
@@ -76,7 +66,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <Container className="py-5">
+    <Container className="py-5" style={{ backgroundColor: '#f0f8ff' }}>
       <Header />
       <LoadingSpinner loading={loading} />
       <ErrorAlert error={error} />
@@ -91,8 +81,8 @@ const Home: React.FC = () => {
 const Header: React.FC = () => (
   <Row className="text-center mb-5">
     <Col>
-      <h1 className="display-4 font-weight-bold">Polling App</h1>
-      <p className="lead">Create and participate in polls with ease!</p>
+      <h1 className="display-4 font-weight-bold text-center">Polling App</h1>
+      <p className="lead text-center">Create and participate in polls with ease!</p>
     </Col>
   </Row>
 );
@@ -112,7 +102,7 @@ const ErrorAlert: React.FC<{ error: string | null }> = ({ error }) => (
   error && (
     <Row className="text-center mb-3">
       <Col>
-        <Alert variant="danger" className="alert-custom">{error}</Alert>
+        <Alert variant="danger" className="alert-custom text-center">{error}</Alert>
       </Col>
     </Row>
   )
@@ -120,7 +110,7 @@ const ErrorAlert: React.FC<{ error: string | null }> = ({ error }) => (
 
 const PollCreationCard: React.FC<{ onCreatePoll: (question: string, options: string[]) => Promise<void> }> = ({ onCreatePoll }) => (
   <Col md={5} className="mb-4">
-    <Card className="shadow-lg">
+    <Card className="shadow-lg text-center">
       <Card.Body>
         <Card.Title className="text-center mb-4 font-weight-bold">Create a New Poll</Card.Title>
         <PollForm onSubmit={onCreatePoll} />
@@ -131,7 +121,7 @@ const PollCreationCard: React.FC<{ onCreatePoll: (question: string, options: str
 
 const ExistingPollsCard: React.FC<{ polls: Poll[], loading: boolean, onVote: (pollId: string, optionId: string) => Promise<void> }> = ({ polls, loading, onVote }) => (
   <Col md={5} className="mb-4">
-    <Card className="shadow-lg">
+    <Card className="shadow-lg text-center">
       <Card.Body>
         <Card.Title className="text-center mb-4 font-weight-bold">Active Polls</Card.Title>
         {polls.length === 0 && !loading ? (
