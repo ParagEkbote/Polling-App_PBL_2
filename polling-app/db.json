@@ -7,12 +7,12 @@
         {
           "id": "34e09adc-2808-4369-9295-5cef58e465f4",
           "text": "qq",
-          "votes": 8
+          "votes": 9
         },
         {
           "id": "da194e14-048b-4c49-b4f4-8394812fe204",
           "text": "sd",
-          "votes": 8
+          "votes": 9
         }
       ]
     },
@@ -23,12 +23,12 @@
         {
           "id": "c6c0ed79-c434-4d76-b6a5-4d1e313369d0",
           "text": "toi",
-          "votes": 1
+          "votes": 2
         },
         {
           "id": "21fe0b8d-8a6c-4e37-b7ab-bd049e0f2485",
           "text": "the",
-          "votes": 2
+          "votes": 3
         }
       ]
     },
@@ -39,12 +39,12 @@
         {
           "id": "32bb35ed-6460-4550-ba94-75b6c578d5d7",
           "text": "toi",
-          "votes": 3
+          "votes": 4
         },
         {
           "id": "66fef424-6fa4-46fc-8ccf-0a4b34f34315",
           "text": "the",
-          "votes": 2
+          "votes": 3
         }
       ]
     },
@@ -55,12 +55,12 @@
         {
           "id": "86e554c1-55f0-4e0f-ae89-e3e6e3c0c63d",
           "text": "painter ",
-          "votes": 5
+          "votes": 6
         },
         {
           "id": "ccc19ea8-60b8-43a8-b975-e80d28eea644",
           "text": "podcast dude",
-          "votes": 6
+          "votes": 7
         }
       ]
     },
@@ -71,12 +71,12 @@
         {
           "id": "f80412f3-b25d-4f73-9d5c-8adcbe679d44",
           "text": "donald trump",
-          "votes": 13
+          "votes": 14
         },
         {
           "id": "70a20b72-10ba-4ae5-86c9-f9b6041c04f0",
           "text": "joe biden",
-          "votes": 8
+          "votes": 10
         }
       ]
     },
@@ -92,7 +92,7 @@
         {
           "id": "917a39b4-834d-4491-9cc6-241f316dbaab",
           "text": "34",
-          "votes": 10
+          "votes": 11
         }
       ]
     },
@@ -103,12 +103,12 @@
         {
           "id": "2aeea899-3c18-4101-b54d-0024126ffc36",
           "text": "Tomato",
-          "votes": 3
+          "votes": 4
         },
         {
           "id": "293525f4-bb82-4b89-bc3e-e04fa4073bfc",
           "text": "Potato",
-          "votes": 3
+          "votes": 4
         }
       ]
     }
