@@ -23,22 +23,23 @@ body {
 }
 
 h1.display-4 {
-  color: #110101;
+  color: #171613;
 }
 
 h3 {
-  color: #000000;
+  color: #535151;
 }
 
 .btn {
-  border-radius: 5px;
+  border-radius: 10px;
   transition: background-color 0.3s;
 }
 
 .btn:hover {
-  background-color: #000000;
+  background-color: #ffffff;
 }
 
 .container {
-  max-width: 1400px; /* Expand the container size */
+  max-width: 2500px;
+  max-height: 1000px; /* Expand the container size */
 }
