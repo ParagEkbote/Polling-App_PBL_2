@@ -91,16 +91,6 @@ const Header: React.FC = () => (
   </Row>
 );
 
-const LoadingSpinner: React.FC<{ loading: boolean }> = ({ loading }) => (
-  loading && (
-    <Row className="text-center mb-3 w-100">
-      <Col>
-        <Spinner animation="border" variant="primary" />
-        <p>Loading polls...</p>
-      </Col>
-    </Row>
-  )
-);
 
 const ErrorAlert: React.FC<{ error: string | null }> = ({ error }) => (
   error && (
@@ -136,6 +126,17 @@ const ExistingPollsCard: React.FC<{ polls: Poll[], loading: boolean, onVote: (po
       </Card.Body>
     </Card>
   </Col>
+);
+
+const LoadingSpinner: React.FC<{ loading: boolean }> = ({ loading }) => (
+  loading && (
+    <Row className="text-center mb-3 w-100">
+      <Col>
+        <Spinner animation="border" variant="primary" />
+        <p>Loading polls...</p>
+      </Col>
+    </Row>
+  )
 );
 
 export default Home;
