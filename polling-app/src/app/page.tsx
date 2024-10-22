@@ -106,7 +106,7 @@ const PollCreationCard: React.FC<{ onCreatePoll: (question: string, options: str
   <Col md={5} className="mb-4 d-flex justify-content-center">
     <Card className="shadow-lg text-center">
       <Card.Body>
-        <Card.Title className="text-center mb-4 font-weight-bold"><p style={{ marginBottom: '15px' }}>Create a New Poll</p></Card.Title>
+        <Card.Title className="text-center mb-4 font-weight-bold"><p style={{ marginBottom: '75px' }}>Create a New Poll</p></Card.Title>
         <PollForm onSubmit={onCreatePoll} />
       </Card.Body>
     </Card>
@@ -117,7 +117,7 @@ const ExistingPollsCard: React.FC<{ polls: Poll[], loading: boolean, onVote: (po
   <Col md={5} className="mb-4 d-flex justify-content-center">
     <Card className="shadow-lg text-center">
       <Card.Body>
-        <Card.Title className="text-center mb-4 font-weight-bold"><p style={{ marginBottom: '15px' }}>Active Polls</p></Card.Title>
+        <Card.Title className="text-center mb-4 font-weight-bold"><p style={{ marginBottom: '35px' }}>Active Polls</p></Card.Title>
         {polls.length === 0 && !loading ? (
           <p className="text-center">No polls available. Be the first to create one!</p>
         ) : (
