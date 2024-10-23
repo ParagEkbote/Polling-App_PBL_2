@@ -3,6 +3,8 @@ import { Card } from '../components/ui';
 import { Button } from '../components/ui';
 import { Label } from '../components/ui';
 import { Input } from '../components/ui';
+import { X } from 'lucide-react';
+
 
 interface PollFormProps {
   onSubmit: (question: string, options: string[]) => void;
@@ -26,6 +28,13 @@ const PollForm: React.FC<PollFormProps> = ({ onSubmit }) => {
     setOptions([...options, '']);
   };
 
+  const removeOption = (index: number) => {
+    if (options.length > 2) {
+      const newOptions = options.filter((_, i) => i !== index);
+      setOptions(newOptions);
+    }
+  };
+
   return (
     <Card className="p-6">
       <form onSubmit={handleSubmit}>
@@ -42,19 +51,33 @@ const PollForm: React.FC<PollFormProps> = ({ onSubmit }) => {
           </div>
 
           {options.map((option, index) => (
-            <div key={index}>
-              <Label htmlFor={`option-${index}`}>Option {index + 1}</Label>
-              <Input
-                id={`option-${index}`}
-                value={option}
-                onChange={(e) => {
-                  const newOptions = [...options];
-                  newOptions[index] = e.target.value;
-                  setOptions(newOptions);
-                }}
-                required
-                className="w-full"
-              />
+            <div key={index} className="flex gap-2 items-start">
+              <div className="flex-1">
+                <Label htmlFor={`option-${index}`}>Option {index + 1}</Label>
+                <Input
+                  id={`option-${index}`}
+                  value={option}
+                  onChange={(e) => {
+                    const newOptions = [...options];
+                    newOptions[index] = e.target.value;
+                    setOptions(newOptions);
+                  }}
+                  required
+                  className="w-full"
+                />
+              </div>
+              <div className="flex gap-2 mt-6">
+                {options.length > 2 && (
+                  <Button
+                    type="button"
+                    variant="primary"
+                    size="sm"
+                    onClick={() => removeOption(index)}
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                )}
+              </div>
             </div>
           ))}
 
@@ -64,7 +87,7 @@ const PollForm: React.FC<PollFormProps> = ({ onSubmit }) => {
             </Button>
             <Button type="submit">Create Poll</Button>
             <Button type="button" onClick={handleReset} variant="primary">
-              Reset Options
+              Reset All
             </Button>
           </div>
         </div>
