@@ -1,50 +1,18 @@
 {
   "polls": [
     {
-      "id": "0997610b-18c7-47c3-aaa4-6acab413ff6f",
-      "question": "Which is more healthy?",
-      "options": [
-        {
-          "id": "7f22428c-f52f-4eb3-9d16-f8044fe11945",
-          "text": "Burger",
-          "votes": 1
-        },
-        {
-          "id": "4c790ebe-5e7c-4fed-879c-63ae209818cc",
-          "text": "Vegetable",
-          "votes": 1
-        }
-      ]
-    },
-    {
-      "id": "6367c29a-f069-4e09-a572-29df13e1b393",
-      "question": "What genre will you prefer?",
-      "options": [
-        {
-          "id": "1dcace82-b96c-4495-aa46-570276545de2",
-          "text": "Sci-fi",
-          "votes": 1
-        },
-        {
-          "id": "b3dbb2b6-166c-4d63-a2b2-2537850d028c",
-          "text": "Thriller",
-          "votes": 1
-        }
-      ]
-    },
-    {
-      "id": "5721da75-3368-4bdb-9085-04739c60efb9",
+      "id": "2bd01b25-f8f4-4f7f-be2f-1981faf54959",
       "question": "Tomato is a fruit?",
       "options": [
         {
-          "id": "09d92e7e-3fa4-4ab1-b45f-852c457f79e2",
+          "id": "76b6c898-e917-4677-8dc4-3d66065ab637",
           "text": "True",
           "votes": 1
         },
         {
-          "id": "c2d32dd6-1e23-4498-a8a4-83493d1328c3",
+          "id": "991e1ed6-d889-473b-bf4b-b0243ee662f8",
           "text": "False",
-          "votes": 1
+          "votes": 2
         }
       ]
     }

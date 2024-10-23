@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ProgressBar } from 'react-bootstrap';
 
 interface Option {
@@ -8,11 +8,23 @@ interface Option {
 }
 
 interface PollResultsProps {
-  options: Option[];
+  initialOptions: Option[];
 }
 
-const PollResults: React.FC<PollResultsProps> = ({ options }) => {
+const PollResults: React.FC<PollResultsProps> = ({ initialOptions }) => {
+  // Manage the state of options with votes in the parent
+  const [options, setOptions] = useState(initialOptions);
+
   const totalVotes = options.reduce((sum, option) => sum + option.votes, 0);
+
+  const handleResetVotes = () => {
+    // Reset votes for all options to zero
+    const resetOptions = options.map(option => ({
+      ...option,
+      votes: 0,
+    }));
+    setOptions(resetOptions);
+  };
 
   return (
     <div>
@@ -20,11 +32,15 @@ const PollResults: React.FC<PollResultsProps> = ({ options }) => {
         <div key={option.id} className="mb-2">
           <div>{option.text}</div>
           <ProgressBar
-            now={(option.votes / totalVotes) * 100}
-            label={`${option.votes} votes (${((option.votes / totalVotes) * 100).toFixed(1)}%)`}
+            now={totalVotes ? (option.votes / totalVotes) * 100 : 0}
+            label={`${option.votes} votes (${totalVotes ? ((option.votes / totalVotes) * 100).toFixed(1) : 0}%)`}
           />
         </div>
       ))}
+
+      <button onClick={handleResetVotes} className="btn btn-primary mt-3">
+        Reset Poll Count
+      </button>
     </div>
   );
 };

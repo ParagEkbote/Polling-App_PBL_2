@@ -87,7 +87,7 @@ const PollForm: React.FC<PollFormProps> = ({ onSubmit }) => {
             </Button>
             <Button type="submit">Create Poll</Button>
             <Button type="button" onClick={handleReset} variant="primary">
-              Reset All
+              Reset 
             </Button>
           </div>
         </div>
