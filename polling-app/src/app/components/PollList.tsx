@@ -1,7 +1,7 @@
-//PollList.tsx
+// PollList.tsx
 
+// Import necessary libraries and components
 import React from 'react';
-
 
 // Define the Poll type structure
 interface Option {
@@ -10,17 +10,20 @@ interface Option {
   votes: number;
 }
 
+// Define the Poll interface structure
 interface Poll {
   id: string;
   question: string;
   options: Option[];
 }
 
+// Define the PollList component's props
 interface PollListProps {
   polls: Poll[];
   onVote: (pollId: string, optionId: string) => void;
 }
 
+// PollList component definition
 const PollList: React.FC<PollListProps> = ({ polls, onVote }) => {
   return (
     <div>
@@ -32,7 +35,7 @@ const PollList: React.FC<PollListProps> = ({ polls, onVote }) => {
               key={option.id}
               onClick={() => onVote(poll.id, option.id)} // Call the onVote function
               style={{
-                margin: '5px',
+                margin: '10px',
                 padding: '10px 15px',
                 border: 'none',
                 borderRadius: '5px',
