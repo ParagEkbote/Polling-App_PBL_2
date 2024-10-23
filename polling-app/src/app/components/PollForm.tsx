@@ -9,25 +9,31 @@ interface PollFormProps {
 }
 
 const PollForm: React.FC<PollFormProps> = ({ onSubmit }) => {
-  const [question, setQuestion] = useState<string>('');
-  const [options, setOptions] = useState<string[]>(['', '']);
+  const [question, setQuestion] = useState('');
+  const [options, setOptions] = useState(['', '']);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSubmit(question, options.filter(option => option !== ''));
   };
-  
+
+  const handleReset = () => {
+    setQuestion('');
+    setOptions(['', '']);
+  };
+
+  const addOption = () => {
+    setOptions([...options, '']);
+  };
+
   return (
-    <Card className="w-full max-w-md p-6">
-      <form onSubmit={handleSubmit} className="space-y-8">
+    <Card className="p-6">
+      <form onSubmit={handleSubmit}>
         <div className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="question" className="text-base font-medium">
-              Question
-            </Label>
+          <div>
+            <Label htmlFor="question">Question</Label>
             <Input
               id="question"
-              type="text"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               required
@@ -36,13 +42,10 @@ const PollForm: React.FC<PollFormProps> = ({ onSubmit }) => {
           </div>
 
           {options.map((option, index) => (
-            <div key={index} className="space-y-2">
-              <Label htmlFor={`option-${index}`} className="text-base font-medium">
-                Option {index + 1}
-              </Label>
+            <div key={index}>
+              <Label htmlFor={`option-${index}`}>Option {index + 1}</Label>
               <Input
                 id={`option-${index}`}
-                type="text"
                 value={option}
                 onChange={(e) => {
                   const newOptions = [...options];
@@ -54,11 +57,17 @@ const PollForm: React.FC<PollFormProps> = ({ onSubmit }) => {
               />
             </div>
           ))}
-        </div>
 
-        <Button type="submit" className="w-full">
-          Create Poll
-        </Button>
+          <div className="flex gap-2">
+            <Button type="button" onClick={addOption}>
+              Add Option
+            </Button>
+            <Button type="submit">Create Poll</Button>
+            <Button type="button" onClick={handleReset} variant="primary">
+              Reset Options
+            </Button>
+          </div>
+        </div>
       </form>
     </Card>
   );
