@@ -15,6 +15,38 @@
           "votes": 1
         }
       ]
+    },
+    {
+      "id": "6367c29a-f069-4e09-a572-29df13e1b393",
+      "question": "What genre will you prefer?",
+      "options": [
+        {
+          "id": "1dcace82-b96c-4495-aa46-570276545de2",
+          "text": "Sci-fi",
+          "votes": 1
+        },
+        {
+          "id": "b3dbb2b6-166c-4d63-a2b2-2537850d028c",
+          "text": "Thriller",
+          "votes": 1
+        }
+      ]
+    },
+    {
+      "id": "5721da75-3368-4bdb-9085-04739c60efb9",
+      "question": "Tomato is a fruit?",
+      "options": [
+        {
+          "id": "09d92e7e-3fa4-4ab1-b45f-852c457f79e2",
+          "text": "True",
+          "votes": 1
+        },
+        {
+          "id": "c2d32dd6-1e23-4498-a8a4-83493d1328c3",
+          "text": "False",
+          "votes": 1
+        }
+      ]
     }
   ]
 }
