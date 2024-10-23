@@ -1,3 +1,5 @@
+//PollResults.tsx
+
 import React, { useState } from 'react';
 import { ProgressBar } from 'react-bootstrap';
 

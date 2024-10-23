@@ -1,5 +1,5 @@
 body {
-  background-color: #b9d4f0;
+  background-color: #b9d4f0;       /*Attributes for the body of web-page.*/
   font-family: 'Arial', sans-serif;
   display: flex;
   justify-content: center;
@@ -23,8 +23,9 @@ body {
 }
 
 h1.display-4 {
-  color: #171613;
+  color: #171613;   /*Text color within the container. */
 }
+
 
 h3 {
   color: #535151;
@@ -41,5 +42,5 @@ h3 {
 
 .container {
   max-width: 2500px;
-  max-height: 1000px; /* Expand the container size */
+  max-height: 1000px;     /*Container body for the application. */
 }

@@ -1,3 +1,4 @@
+//poll.tsx
 import type { NextApiRequest, NextApiResponse } from 'next';
 import fs from 'fs/promises';  // Use the promise-based version of 'fs'
 import path from 'path';
@@ -34,7 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } else if (req.method === 'POST') {
       const { question, options } = req.body;
       
-      // Basic validation
+      //Validation Logic for the API
       if (!question || !Array.isArray(options) || options.length === 0) {
         return res.status(400).json({ message: 'Invalid input: question and options are required' });
       }
@@ -57,7 +58,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } else if (req.method === 'PUT') {
       const { pollId, optionId } = req.body;
       
-      // Validate input
+      // Validate Input from the user
       if (!pollId || !optionId) {
         return res.status(400).json({ message: 'Poll ID and Option ID are required' });
       }

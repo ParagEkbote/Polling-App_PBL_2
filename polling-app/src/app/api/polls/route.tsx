@@ -1,3 +1,4 @@
+//route.tsx
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs/promises';  // Use promise-based fs
 import path from 'path';
@@ -5,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const dbPath = path.join(process.cwd(), 'db.json');
 
-// Helper function to read the JSON database
+//Function to read the JSON database
 const readDatabase = async () => {
     try {
       const data = await fs.readFile(dbPath, 'utf8');
@@ -25,7 +26,7 @@ const readDatabase = async () => {
     }
   };
 
-// Helper function to write to the JSON database
+//Function to write to the JSON database
 const writeDatabase = async (data: any) => {
   try {
     await fs.writeFile(dbPath, JSON.stringify(data, null, 2));  // Pretty-print JSON with 2-space indent
@@ -55,7 +56,7 @@ export async function POST(request: NextRequest) {
     const data = await readDatabase();
     const body = await request.json();
 
-    // Basic validation of the incoming request
+    //Validation of the incoming request
     if (!body.question || !Array.isArray(body.options) || body.options.length === 0) {
       return new NextResponse(
         JSON.stringify({ error: 'Invalid request: question and options are required' }),
@@ -93,7 +94,7 @@ export async function PUT(request: NextRequest) {
 
     const { pollId, optionId } = body;
 
-    // Validate input
+    // Validate input from the user
     if (!pollId || !optionId) {
       return new NextResponse(
         JSON.stringify({ error: 'Poll ID and Option ID are required' }),
@@ -111,7 +112,7 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json({ error: 'Option not found' }, { status: 404 });
     }
 
-    // Increment vote count
+    // Increment vote count in the database.
     option.votes++;
 
     await writeDatabase(data);

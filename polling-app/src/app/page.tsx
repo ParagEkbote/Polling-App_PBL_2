@@ -7,24 +7,31 @@ import PollList from './components/PollList';
 import { Poll } from './types';
 import './styles.css';
 
+
+//Interface Args for Poll Creation Card
 interface PollCreationCardProps {
   onCreatePoll: (question: string, options: string[]) => Promise<void>;
 }
 
+//Interface Args for Existing Polls
 interface ExistingPollsCardProps {
   polls: Poll[];
   loading: boolean;
   onVote: (pollId: string, optionId: string) => Promise<void>;
 }
 
+//Interface Args for ErrorAlert
 interface ErrorAlertProps {
   error: string | null;
 }
 
+//Interface Args for LoadingSpinner
 interface LoadingSpinnerProps {
   loading: boolean;
 }
 
+
+//Header component
 const Header: React.FC = () => (
   <Row className="text-center mb-5 w-100">
     <Col>
@@ -35,6 +42,7 @@ const Header: React.FC = () => (
   </Row>
 );
 
+//ErrorAlert component
 const ErrorAlert: React.FC<ErrorAlertProps> = ({ error }) => (
   error && (
     <Row className="text-center mb-3 w-100">
@@ -45,6 +53,7 @@ const ErrorAlert: React.FC<ErrorAlertProps> = ({ error }) => (
   )
 );
 
+//PollCreationCard component
 const PollCreationCard: React.FC<PollCreationCardProps> = ({ onCreatePoll }) => (
   <Col md={5} className="mb-4 d-flex justify-content-center">
     <Card className="shadow-lg text-center">
@@ -58,6 +67,7 @@ const PollCreationCard: React.FC<PollCreationCardProps> = ({ onCreatePoll }) => 
   </Col>
 );
 
+//ExistingPollsCard component
 const ExistingPollsCard: React.FC<ExistingPollsCardProps> = ({ polls, loading, onVote }) => (
   <Col md={5} className="mb-4 d-flex justify-content-center">
     <Card className="shadow-lg text-center">
@@ -74,6 +84,8 @@ const ExistingPollsCard: React.FC<ExistingPollsCardProps> = ({ polls, loading, o
     </Card>
   </Col>
 );
+
+//LoadingSpinner component
 
 const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({ loading }) => (
   loading && (
@@ -95,6 +107,8 @@ const Page: React.FC = () => {
     loadPolls();
   }, []);
 
+//Function to load polls from the API
+
   const loadPolls = async () => {
     try {
       setLoading(true);
@@ -110,6 +124,7 @@ const Page: React.FC = () => {
     }
   };
 
+//Function to handle poll creation
   const handleCreatePoll = async (question: string, options: string[]) => {
     try {
       setLoading(true);
@@ -127,6 +142,8 @@ const Page: React.FC = () => {
     }
   };
 
+
+//Function to handling voting on a poll
   const handleVote = async (pollId: string, optionId: string) => {
     try {
       setLoading(true);
@@ -155,7 +172,7 @@ const Page: React.FC = () => {
         padding: '20px'
       }}
     >
-      <Header />
+      <Header/>
       <LoadingSpinner loading={loading} />
       <ErrorAlert error={error} />
       <Row className="justify-content-center w-100">
