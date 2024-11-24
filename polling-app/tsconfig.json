@@ -1,27 +1,29 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "types":["node"]
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
+    "lib": ["dom", "dom.iterable", "esnext"], // Includes DOM and ESNext features
+    "allowJs": true, // Allows JavaScript files in the project
+    "types": ["node", "next"], // Ensure Node.js and Next.js types are included
+    "skipLibCheck": true, // Skips type checking for declaration files
+    "strict": true, // Enables strict type checking
+    "noEmit": true, // Prevents emitting compiled JavaScript files
+    "esModuleInterop": true, // Enables compatibility with CommonJS and ES modules
+    "module": "esnext", // Specifies module code generation
+    "moduleResolution": "node", // Resolves modules in Node.js style
+    "resolveJsonModule": true, // Enables importing JSON files
+    "isolatedModules": true, // Ensures compatibility with Next.js
+    "target": "ESNext", // Specifies ECMAScript target version
+    "baseUrl": ".", // Sets base directory for module resolution
+    "jsx": "preserve", // Keeps JSX as-is for processing by Next.js
+    "incremental": true, // Enables incremental compilation
+    "paths": {
+      "@/*": ["./src/*"] // Aliases `@` to the `src` directory
+    },
     "plugins": [
       {
-        "name": "next"
+        "name": "next" // Provides enhanced IntelliSense for Next.js
       }
-    ],
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"], // Includes necessary files
+  "exclude": ["node_modules"] // Excludes node_modules
 }
