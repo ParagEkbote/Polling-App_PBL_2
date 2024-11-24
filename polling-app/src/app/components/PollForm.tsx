@@ -1,13 +1,12 @@
-//PollForm.tsx
-import React, { FormEvent, useState } from 'react';  //Import Necessary dependencies
+import React, { FormEvent, useState } from 'react';
 import { Card } from '../components/ui';
 import { Button } from '../components/ui';
 import { Label } from '../components/ui';
 import { Input } from '../components/ui';
 import { X } from 'lucide-react';
+import GoogleFormCard from './GoogleFormCard'; // Import the GoogleFormCard component
 
-
-//Interface for PollForm attributes
+// Interface for PollForm attributes
 interface PollFormProps {
   onSubmit: (question: string, options: string[]) => void;
 }
@@ -16,8 +15,7 @@ const PollForm: React.FC<PollFormProps> = ({ onSubmit }) => {
   const [question, setQuestion] = useState('');
   const [options, setOptions] = useState(['', '']);
 
-
-//Function for Submission of Poll
+  // Function for Submission of Poll
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     onSubmit(question, options.filter(option => option !== ''));
@@ -28,12 +26,12 @@ const PollForm: React.FC<PollFormProps> = ({ onSubmit }) => {
     setOptions(['', '']);
   };
 
-//Add an Option to the application
+  // Add an Option to the application
   const addOption = () => {
     setOptions([...options, '']);
   };
 
-//Remove an option from the poll
+  // Remove an option from the poll
   const removeOption = (index: number) => {
     if (options.length > 2) {
       const newOptions = options.filter((_, i) => i !== index);
@@ -41,7 +39,6 @@ const PollForm: React.FC<PollFormProps> = ({ onSubmit }) => {
     }
   };
 
-  //CSS for the components.
   return (
     <Card className="p-6">
       <form onSubmit={handleSubmit}>
@@ -99,6 +96,9 @@ const PollForm: React.FC<PollFormProps> = ({ onSubmit }) => {
           </div>
         </div>
       </form>
+
+      {/* Google Form Card */}
+      <GoogleFormCard /> {/* Include the GoogleFormCard component below the poll form */}
     </Card>
   );
 };
