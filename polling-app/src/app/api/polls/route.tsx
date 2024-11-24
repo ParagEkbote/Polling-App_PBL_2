@@ -1,15 +1,19 @@
-//route.tsx
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs/promises';  // Use promise-based fs
+import fsPromises from 'fs/promises';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 
+// Explicitly declare runtime
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
+// Use process from global scope
 const dbPath = path.join(process.cwd(), 'db.json');
 
 //Function to read the JSON database
 const readDatabase = async () => {
     try {
-      const data = await fs.readFile(dbPath, 'utf8');
+      const data = await fsPromises.readFile(dbPath, 'utf8');
       return JSON.parse(data);
     } catch (error) {
       // Check if the error is an instance of Error
@@ -29,7 +33,7 @@ const readDatabase = async () => {
 //Function to write to the JSON database
 const writeDatabase = async (data: any) => {
   try {
-    await fs.writeFile(dbPath, JSON.stringify(data, null, 2));  // Pretty-print JSON with 2-space indent
+    await fsPromises.writeFile(dbPath, JSON.stringify(data, null, 2));  // Pretty-print JSON with 2-space indent
   } catch (error) {
     throw new Error('Failed to write to database');
   }
@@ -38,16 +42,10 @@ const writeDatabase = async (data: any) => {
 export async function GET() {
   try {
     const data = await readDatabase();
-    return new NextResponse(JSON.stringify(data.polls), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return NextResponse.json(data.polls, { status: 200 });
   } catch (error) {
     console.error('Error in GET /api/polls:', error);
-    return new NextResponse(JSON.stringify({ error: 'Internal Server Error' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
@@ -58,9 +56,9 @@ export async function POST(request: NextRequest) {
 
     //Validation of the incoming request
     if (!body.question || !Array.isArray(body.options) || body.options.length === 0) {
-      return new NextResponse(
-        JSON.stringify({ error: 'Invalid request: question and options are required' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      return NextResponse.json(
+        { error: 'Invalid request: question and options are required' },
+        { status: 400 }
       );
     }
 
@@ -80,10 +78,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(newPoll, { status: 201 });
   } catch (error) {
     console.error('Error in POST /api/polls:', error);
-    return new NextResponse(JSON.stringify({ error: 'Internal Server Error' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
 
@@ -96,9 +91,9 @@ export async function PUT(request: NextRequest) {
 
     // Validate input from the user
     if (!pollId || !optionId) {
-      return new NextResponse(
-        JSON.stringify({ error: 'Poll ID and Option ID are required' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      return NextResponse.json(
+        { error: 'Poll ID and Option ID are required' },
+        { status: 400 }
       );
     }
 
@@ -120,9 +115,6 @@ export async function PUT(request: NextRequest) {
     return NextResponse.json(poll, { status: 200 });
   } catch (error) {
     console.error('Error in PUT /api/polls:', error);
-    return new NextResponse(JSON.stringify({ error: 'Internal Server Error' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
