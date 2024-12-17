@@ -1,48 +1,33 @@
-// PollList.tsx
-
-// Import necessary libraries and components
 import React from 'react';
 
-// Define the Poll type structure
 interface Option {
   id: string;
   text: string;
   votes: number;
 }
 
-// Define the Poll interface structure
 interface Poll {
   id: string;
   question: string;
   options: Option[];
 }
 
-// Define the PollList component's props
 interface PollListProps {
   polls: Poll[];
   onVote: (pollId: string, optionId: string) => void;
 }
 
-// PollList component definition
 const PollList: React.FC<PollListProps> = ({ polls, onVote }) => {
   return (
-    <div>
+    <div className="space-y-8">
       {polls.map((poll) => (
-        <div key={poll.id} style={{ marginBottom: '20px' }}>
-          <h3>{poll.question}</h3>
+        <div key={poll.id} className="space-y-4">
+          <h3 className="text-lg font-medium">{poll.question}</h3>
           {poll.options.map((option) => (
             <button
               key={option.id}
-              onClick={() => onVote(poll.id, option.id)} // Call the onVote function
-              style={{
-                margin: '10px',
-                padding: '10px 15px',
-                border: 'none',
-                borderRadius: '5px',
-                backgroundColor: '#007bff',
-                color: 'white',
-                cursor: 'pointer',
-              }}
+              onClick={() => onVote(poll.id, option.id)}
+              className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               aria-label={`Vote for ${option.text}`}
             >
               {option.text} ({option.votes})
